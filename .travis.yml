@@ -1,0 +1,10 @@
+language: java
+jdk:
+  - openjdk7
+  - oraclejdk7
+notifications:
+  recipients:
+    - stefenatefun@gmail.com
+branches:
+  only:
+    - master

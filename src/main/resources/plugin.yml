@@ -1,0 +1,23 @@
+name: EntityEdit
+main: com.stefensharkey.entityedit.EntityEdit
+version: ${project.version}
+author: Stefenatefun
+
+commands:
+  entityedit:
+    description: See EntityEdit help page.
+    aliases: [ee]
+    permission: entityedit.help
+  entityedit reload:
+    description: Reloads EntityEdit.
+    aliases: [eer]
+    permission: entityedit.reload
+
+permissions:
+  entityedit.*:
+    description: Gives access to all EntityEdit permissions.
+    children:
+      entityedit.reload: true
+  entityedit.reload:
+    description: Reloads EntityEdit.
+    default: op
