@@ -33,3 +33,7 @@ I have only a few guidelines I ask for you to follow:
  * [Eclipse Code Style XML](https://code.google.com/p/google-styleguide/source/browse/trunk/eclipse-java-google-style.xml)
  * [IntelliJ Code Style XML](https://code.google.com/p/google-styleguide/source/browse/trunk/intellij-java-google-style.xml)
 * **Test your code.** Please don't submit buggy code.
+
+---
+
+[![Build Status](https://travis-ci.org/Stefenatefun/EntityEdit.svg)](https://travis-ci.org/Stefenatefun/EntityEdit)
