@@ -19,6 +19,7 @@ package com.stefensharkey.entityedit;
 
 import com.stefensharkey.entityedit.command.CommandEntityEdit;
 import com.stefensharkey.entityedit.command.CommandHandler;
+import com.stefensharkey.entityedit.command.CommandName;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -39,6 +40,7 @@ public class EntityEdit extends JavaPlugin {
     CommandHandler handler = new CommandHandler();
 
     handler.register("entityedit", new CommandEntityEdit());
+    handler.register("name", new CommandName());
 
     getCommand("entityedit").setExecutor(handler);
   }

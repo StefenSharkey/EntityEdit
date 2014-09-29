@@ -8,9 +8,17 @@ commands:
     description: See EntityEdit help page.
     aliases: [ee]
     permission: entityedit.help
+  entityedit name:
+    description: Sets the name of the entity.
+    aliases: [een]
+    permission: entityedit.name
 
 permissions:
   entityedit.*:
     description: Gives access to all EntityEdit permissions.
     children:
       entityedit.help: true
+      entityedit.name: true
+  entityedit.name:
+    description: Sets the name of the entity.
+    default: op
