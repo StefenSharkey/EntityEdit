@@ -15,31 +15,19 @@
  * along with PvPLogger.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-package com.stefensharkey.entityedit;
+package com.stefensharkey.entityedit.command;
 
-import com.stefensharkey.entityedit.command.CommandEntityEdit;
-import com.stefensharkey.entityedit.command.CommandHandler;
+import org.bukkit.command.Command;
+import org.bukkit.command.CommandSender;
+import org.bukkit.entity.Player;
 
-import org.bukkit.plugin.java.JavaPlugin;
-
-public class EntityEdit extends JavaPlugin {
-
-  @Override
-  public void onEnable() {
-    registerCommands();
-  }
+public class CommandEntityEdit implements CommandInterface {
 
   @Override
-  public void onDisable() {
+  public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
+    Player player = (Player) sender;
 
-  }
-
-  @SuppressWarnings("ConstantConditions")
-  public void registerCommands() {
-    CommandHandler handler = new CommandHandler();
-
-    handler.register("entityedit", new CommandEntityEdit());
-
-    getCommand("entityedit").setExecutor(handler);
+    player.sendMessage("EntityEdit");
+    return false;
   }
 }
