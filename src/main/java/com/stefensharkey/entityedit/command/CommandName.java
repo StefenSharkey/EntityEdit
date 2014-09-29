@@ -17,6 +17,7 @@
 
 package com.stefensharkey.entityedit.command;
 
+import com.stefensharkey.entityedit.util.CustomNames;
 import com.stefensharkey.entityedit.util.Utils;
 
 import org.bukkit.ChatColor;
@@ -38,15 +39,17 @@ public class CommandName implements CommandInterface {
     } else if (args.length > 1) {
       if (entity != null) {
         if (entity instanceof Player) {
-          sender.sendMessage(ChatColor.RED + "Player names cannot be changed.");
-          return false;
+//          sender.sendMessage(ChatColor.RED + "Player names cannot be changed.");
+//          return false;
+          CustomNames.setName((Player) entity, args[1]);
+          return true;
         }
 
         ((LivingEntity) entity).setCustomName(args[1]);
         return true;
+      } else {
+        sender.sendMessage(ChatColor.RED + "No entities found.");
       }
-
-      sender.sendMessage(ChatColor.RED + "No entities found.");
     } else {
       sender.sendMessage(ChatColor.RED + "Entity name missing and/or invalid.");
     }

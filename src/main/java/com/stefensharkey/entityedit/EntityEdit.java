@@ -20,6 +20,7 @@ package com.stefensharkey.entityedit;
 import com.stefensharkey.entityedit.command.CommandEntityEdit;
 import com.stefensharkey.entityedit.command.CommandHandler;
 import com.stefensharkey.entityedit.command.CommandName;
+import com.stefensharkey.entityedit.eventlistener.AsyncPlayerReceiveNameTagListener;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,11 +29,11 @@ public class EntityEdit extends JavaPlugin {
   @Override
   public void onEnable() {
     registerCommands();
+    registerEvents();
   }
 
   @Override
   public void onDisable() {
-
   }
 
   @SuppressWarnings("ConstantConditions")
@@ -43,5 +44,9 @@ public class EntityEdit extends JavaPlugin {
     handler.register("name", new CommandName());
 
     getCommand("entityedit").setExecutor(handler);
+  }
+
+  public void registerEvents() {
+    getServer().getPluginManager().registerEvents(new AsyncPlayerReceiveNameTagListener(this), this);
   }
 }
