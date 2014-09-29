@@ -33,10 +33,22 @@ public class CommandName implements CommandInterface {
     Player player = (Player) sender;
     Entity entity = Utils.getEntityInCrosshairs(player);
 
-    if (entity != null) {
-      ((LivingEntity) entity).setCustomName(args[1]);
+    if (args.length > 2) {
+      sender.sendMessage(ChatColor.RED + "Entity names can only have one word.");
+    } else if (args.length > 1) {
+      if (entity != null) {
+        if (entity instanceof Player) {
+          sender.sendMessage(ChatColor.RED + "Player names cannot be changed.");
+          return false;
+        }
+
+        ((LivingEntity) entity).setCustomName(args[1]);
+        return true;
+      }
+
+      sender.sendMessage(ChatColor.RED + "No entities found.");
     } else {
-      sender.sendMessage(ChatColor.RED  + "No entities found!");
+      sender.sendMessage(ChatColor.RED + "Entity name missing and/or invalid.");
     }
 
     return false;
