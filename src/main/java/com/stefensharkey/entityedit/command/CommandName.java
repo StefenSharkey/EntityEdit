@@ -39,10 +39,10 @@ public class CommandName implements CommandInterface {
     } else if (args.length > 1) {
       if (entity != null) {
         if (entity instanceof Player) {
-//          sender.sendMessage(ChatColor.RED + "Player names cannot be changed.");
-//          return false;
-          CustomNames.setName((Player) entity, args[1]);
-          return true;
+          sender.sendMessage(ChatColor.RED + "Player names cannot be changed.");
+          return false;
+//          CustomNames.setName((Player) entity, args[1]);
+//          return true;
         }
 
         ((LivingEntity) entity).setCustomName(args[1]);

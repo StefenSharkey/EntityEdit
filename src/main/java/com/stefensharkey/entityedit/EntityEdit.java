@@ -29,7 +29,7 @@ public class EntityEdit extends JavaPlugin {
   @Override
   public void onEnable() {
     registerCommands();
-    registerEvents();
+//    registerEvents();
   }
 
   @Override
