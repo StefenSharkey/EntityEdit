@@ -40,7 +40,7 @@ public class CommandArmor implements CommandInterface {
     if (args.length == 1) {
       sender.sendMessage(ChatColor.RED + "Syntax error.");
       sender.sendMessage(
-          ChatColor.RED + "/entityedit armor [[-clear] [-h [helm]] [-c [chestplate]] [-l [leggings]] [-b [boots]]]");
+          ChatColor.RED + "/entityedit armor <[-clear] [-h [helm]] [-c [chestplate]] [-l [leggings]] [-b [boots]]>");
     } else {
       for (String arg : args) {
         argsList.add(arg.toLowerCase());
@@ -70,7 +70,7 @@ public class CommandArmor implements CommandInterface {
               setHelmet(entity, helmet);
             }
           } else {
-            sender.sendMessage(ChatColor.RED + "Helmet is null.");
+            entity.getEquipment().setChestplate(new ItemStack(Material.AIR, 1));
             return false;
           }
         }
@@ -87,7 +87,7 @@ public class CommandArmor implements CommandInterface {
               setChestplate(entity, chestplate);
             }
           } else {
-            sender.sendMessage(ChatColor.RED + "Chestplate is null.");
+            entity.getEquipment().setChestplate(new ItemStack(Material.AIR, 1));
             return false;
           }
         }
@@ -104,7 +104,7 @@ public class CommandArmor implements CommandInterface {
               setLeggings(entity, leggings);
             }
           } else {
-            sender.sendMessage(ChatColor.RED + "Leggings are null.");
+            entity.getEquipment().setLeggings(new ItemStack(Material.AIR, 1));
             return false;
           }
         }
@@ -114,15 +114,15 @@ public class CommandArmor implements CommandInterface {
 
           if (argsList.size() > argsList.indexOf("-b") + 1) {
             boots = argsList.get(argsList.indexOf("-b") + 1);
-          } else {
-            sender.sendMessage(ChatColor.RED + "Boots are null.");
-            return false;
-          }
 
-          if (boots.substring(0, 1).equals("-")) {
-            entity.getEquipment().setBoots(new ItemStack(Material.AIR, 1));
+            if (boots.substring(0, 1).equals("-")) {
+              entity.getEquipment().setBoots(new ItemStack(Material.AIR, 1));
+            } else {
+              setBoots(entity, boots);
+            }
           } else {
-            setBoots(entity, boots);
+            entity.getEquipment().setBoots(new ItemStack(Material.AIR, 1));
+            return false;
           }
         }
       } else {
