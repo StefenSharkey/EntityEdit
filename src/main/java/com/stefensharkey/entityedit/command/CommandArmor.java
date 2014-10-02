@@ -53,8 +53,10 @@ public class CommandArmor implements CommandInterface {
           entity.getEquipment().setLeggings(new ItemStack(Material.AIR, 1));
           entity.getEquipment().setBoots(new ItemStack(Material.AIR, 1));
 
-          if (argsList.get(argsList.indexOf("-clear") + 1).equalsIgnoreCase("all")) {
-            entity.getEquipment().setItemInHand(new ItemStack(Material.AIR, 1));
+          if (argsList.size() > argsList.indexOf("-clear") + 1) {
+            if (argsList.get(argsList.indexOf("-clear") + 1).equalsIgnoreCase("all")) {
+              entity.getEquipment().setItemInHand(new ItemStack(Material.AIR, 1));
+            }
           }
 
           sender.sendMessage(ChatColor.GREEN + Utils.getEntityName(entity) + "'s equipment has been cleared.");
@@ -98,11 +100,11 @@ public class CommandArmor implements CommandInterface {
               return false;
             }
           }
-        } else {
-          sender.sendMessage(ChatColor.RED + "No entities found.");
-        }
 
-        sender.sendMessage(ChatColor.GREEN + Utils.getEntityName(entity) + "'s armor has been set.");
+          sender.sendMessage(ChatColor.GREEN + Utils.getEntityName(entity) + "'s armor has been set.");
+        }
+      } else {
+        sender.sendMessage(ChatColor.RED + "No entities found.");
       }
     }
 
