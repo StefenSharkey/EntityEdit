@@ -23,7 +23,6 @@ import com.stefensharkey.entityedit.util.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
-import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
@@ -32,7 +31,7 @@ public class CommandName implements CommandInterface {
   @Override
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     Player player = (Player) sender;
-    Entity entity = Utils.getEntityInCrosshairs(player);
+    LivingEntity entity = Utils.getEntityInCrosshairs(player);
 
     if (args.length > 2) {
       sender.sendMessage(ChatColor.RED + "Entity names can only have one word.");
@@ -43,7 +42,8 @@ public class CommandName implements CommandInterface {
           return true;
         }
 
-        ((LivingEntity) entity).setCustomName(args[1]);
+        entity.setCustomName(args[1]);
+        sender.sendMessage(ChatColor.GREEN + Utils.getEntityName(entity) + " has been renamed to " + args[1] + ".");
         return true;
       } else {
         sender.sendMessage(ChatColor.RED + "No entities found.");

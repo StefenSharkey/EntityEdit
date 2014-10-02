@@ -19,6 +19,7 @@ package com.stefensharkey.entityedit.util;
 
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
+import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import java.util.List;
@@ -31,19 +32,31 @@ public class Utils {
    * @param player The player.
    * @return The entity; null if non-existent.
    */
-  public static Entity getEntityInCrosshairs(Player player) {
+  public static LivingEntity getEntityInCrosshairs(Player player) {
     int range = 10;
     Block[] blocks = player.getLineOfSight(null, range).toArray(new Block[0]);
     List<Entity> near = player.getNearbyEntities(range, range, range);
 
     for (Block block : blocks) {
       for (Entity entity : near) {
-        if (entity.getLocation().distance(block.getLocation()) < 2) {
-          return entity;
+        if (entity instanceof LivingEntity && entity.getLocation().distance(block.getLocation()) < 2) {
+          return (LivingEntity) entity;
         }
       }
     }
 
     return null;
+  }
+
+  public static String getEntityName(LivingEntity entity) {
+    if (entity instanceof Player) {
+      return ((Player) entity).getName();
+    }
+
+    if (entity.getCustomName() == null) {
+      return entity.getType().getEntityClass().getSimpleName();
+    }
+
+    return entity.getCustomName();
   }
 }

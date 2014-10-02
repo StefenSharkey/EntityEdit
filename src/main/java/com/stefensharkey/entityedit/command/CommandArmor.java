@@ -34,7 +34,7 @@ public class CommandArmor implements CommandInterface {
   @Override
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     Player player = (Player) sender;
-    LivingEntity entity = (LivingEntity) Utils.getEntityInCrosshairs(player);
+    LivingEntity entity = Utils.getEntityInCrosshairs(player);
     ArrayList<String> argsList = new ArrayList<>();
 
     if (args.length == 1) {
@@ -56,45 +56,53 @@ public class CommandArmor implements CommandInterface {
           if (argsList.get(argsList.indexOf("-clear") + 1).equalsIgnoreCase("all")) {
             entity.getEquipment().setItemInHand(new ItemStack(Material.AIR, 1));
           }
+
+          sender.sendMessage(ChatColor.GREEN + Utils.getEntityName(entity) + "'s equipment has been cleared.");
         }
 
-        if (argsList.contains("-h")) {
-          if (argsList.size() > argsList.indexOf("-h") + 1) {
-            entity.getEquipment().setHelmet(new ItemStack(getHelmet(argsList.get(argsList.indexOf("-h") + 1)), 1));
-          } else {
-            entity.getEquipment().setChestplate(new ItemStack(Material.AIR, 1));
-            return false;
+        if (argsList.contains("-h") || argsList.contains("-c") || argsList.contains("-l") || argsList.contains("-b")) {
+          if (argsList.contains("-h")) {
+            if (argsList.size() > argsList.indexOf("-h") + 1) {
+              entity.getEquipment().setHelmet(new ItemStack(getHelmet(argsList.get(argsList.indexOf("-h") + 1)), 1));
+            } else {
+              entity.getEquipment().setChestplate(new ItemStack(Material.AIR, 1));
+              return false;
+            }
           }
+
+          if (argsList.contains("-c")) {
+            if (argsList.size() > argsList.indexOf("-c") + 1) {
+              entity.getEquipment()
+                  .setChestplate(new ItemStack(getChestplate(argsList.get(argsList.indexOf("-c") + 1)), 1));
+            } else {
+              entity.getEquipment().setChestplate(new ItemStack(Material.AIR, 1));
+              return false;
+            }
+          }
+
+          if (argsList.contains("-l")) {
+            if (argsList.size() > argsList.indexOf("-l") + 1) {
+              entity.getEquipment()
+                  .setLeggings(new ItemStack(getLeggings(argsList.get(argsList.indexOf("-l") + 1)), 1));
+            } else {
+              entity.getEquipment().setLeggings(new ItemStack(Material.AIR, 1));
+              return false;
+            }
+          }
+
+          if (argsList.contains("-b")) {
+            if (argsList.size() > argsList.indexOf("-b") + 1) {
+              entity.getEquipment().setBoots(new ItemStack(getBoots(argsList.get(argsList.indexOf("-b") + 1)), 1));
+            } else {
+              entity.getEquipment().setBoots(new ItemStack(Material.AIR, 1));
+              return false;
+            }
+          }
+        } else {
+          sender.sendMessage(ChatColor.RED + "No entities found.");
         }
 
-        if (argsList.contains("-c")) {
-          if (argsList.size() > argsList.indexOf("-c") + 1) {
-            entity.getEquipment().setChestplate(new ItemStack(getChestplate(argsList.get(argsList.indexOf("-c") + 1)), 1));
-          } else {
-            entity.getEquipment().setChestplate(new ItemStack(Material.AIR, 1));
-            return false;
-          }
-        }
-
-        if (argsList.contains("-l")) {
-          if (argsList.size() > argsList.indexOf("-l") + 1) {
-            entity.getEquipment().setLeggings(new ItemStack(getLeggings(argsList.get(argsList.indexOf("-l") + 1)), 1));
-          } else {
-            entity.getEquipment().setLeggings(new ItemStack(Material.AIR, 1));
-            return false;
-          }
-        }
-
-        if (argsList.contains("-b")) {
-          if (argsList.size() > argsList.indexOf("-b") + 1) {
-            entity.getEquipment().setBoots(new ItemStack(getBoots(argsList.get(argsList.indexOf("-b") + 1)), 1));
-          } else {
-            entity.getEquipment().setBoots(new ItemStack(Material.AIR, 1));
-            return false;
-          }
-        }
-      } else {
-        sender.sendMessage(ChatColor.RED + "No entities found.");
+        sender.sendMessage(ChatColor.GREEN + Utils.getEntityName(entity) + "'s armor has been set.");
       }
     }
 
