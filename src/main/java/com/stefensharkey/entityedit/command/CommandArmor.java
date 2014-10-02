@@ -73,8 +73,6 @@ public class CommandArmor implements CommandInterface {
             sender.sendMessage(ChatColor.RED + "Helmet is null.");
             return false;
           }
-
-          return true;
         }
 
         if (argsList.contains("-c")) {
@@ -92,8 +90,6 @@ public class CommandArmor implements CommandInterface {
             sender.sendMessage(ChatColor.RED + "Chestplate is null.");
             return false;
           }
-
-          return true;
         }
 
         if (argsList.contains("-l")) {
@@ -111,8 +107,6 @@ public class CommandArmor implements CommandInterface {
             sender.sendMessage(ChatColor.RED + "Leggings are null.");
             return false;
           }
-
-          return true;
         }
 
         if (argsList.contains("-b")) {
@@ -130,8 +124,6 @@ public class CommandArmor implements CommandInterface {
           } else {
             setBoots(entity, boots);
           }
-
-          return true;
         }
       } else {
         sender.sendMessage(ChatColor.RED + "No entities found.");
