@@ -19,18 +19,21 @@ package com.stefensharkey.entityedit.command;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
-import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
-public class CommandHandler implements CommandExecutor {
+public class CommandHandler implements TabExecutor {
 
-  private static Map<String, CommandInterface> commands = new HashMap<>();
+  private Map<String, TabExecutor> commands = new HashMap<>();
 
-  public void register(String name, CommandInterface cmd) {
+  public void register(String name, TabExecutor cmd) {
     commands.put(name, cmd);
   }
 
@@ -38,7 +41,7 @@ public class CommandHandler implements CommandExecutor {
     return commands.containsKey(name);
   }
 
-  public CommandInterface getExecutor(String name) {
+  public TabExecutor getExecutor(String name) {
     return commands.get(name);
   }
 
@@ -46,7 +49,7 @@ public class CommandHandler implements CommandExecutor {
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     if (sender instanceof Player) {
       if (args.length == 0) {
-        getExecutor("entityeditor").onCommand(sender, cmd, label, args);
+        getExecutor("entityedit").onCommand(sender, cmd, label, args);
         return true;
       }
 
@@ -65,5 +68,34 @@ public class CommandHandler implements CommandExecutor {
     }
 
     return false;
+  }
+
+  @Override
+  public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+    if (sender instanceof Player) {
+      if (args.length == 0) {
+        return getExecutor("entityedit").onTabComplete(sender, cmd, label, args);
+      }
+
+      if (args.length > 0) {
+        if (exists(args[0])) {
+          return getExecutor(args[0]).onTabComplete(sender, cmd, label, args);
+        } else {
+          ArrayList<String> commandList = new ArrayList<>();
+
+          for (String command : commands.keySet()) {
+            commandList.add(command);
+          }
+
+          Collections.sort(commandList);
+          return commandList;
+        }
+      }
+    } else {
+      sender.sendMessage(ChatColor.RED + "You must be a player to use this command.");
+      return new ArrayList<>();
+    }
+
+    return null;
   }
 }

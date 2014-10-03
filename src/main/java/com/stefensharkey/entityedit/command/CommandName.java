@@ -23,10 +23,13 @@ import com.stefensharkey.entityedit.util.Utils;
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.command.TabExecutor;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
-public class CommandName implements CommandInterface {
+import java.util.List;
+
+public class CommandName implements TabExecutor {
 
   @Override
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -53,5 +56,10 @@ public class CommandName implements CommandInterface {
     }
 
     return false;
+  }
+
+  @Override
+  public List<String> onTabComplete(CommandSender sender, Command cmd, String label, String[] args) {
+    return null;
   }
 }
