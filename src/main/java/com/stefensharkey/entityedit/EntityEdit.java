@@ -22,6 +22,7 @@ import com.stefensharkey.entityedit.command.CommandEntityEdit;
 import com.stefensharkey.entityedit.command.CommandHandler;
 import com.stefensharkey.entityedit.command.CommandName;
 import com.stefensharkey.entityedit.eventlistener.AsyncPlayerReceiveNameTagListener;
+import com.stefensharkey.entityedit.util.Utils;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -31,6 +32,10 @@ public class EntityEdit extends JavaPlugin {
   public void onEnable() {
     registerCommands();
     registerEvents();
+
+    if (getServer().getPluginManager().getPlugin("TagAPI") != null) {
+      Utils.setDependency("TagAPI");
+    }
   }
 
   @Override

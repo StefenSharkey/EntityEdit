@@ -22,9 +22,12 @@ import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Utils {
+
+  private static ArrayList<String> enabledDependencies = new ArrayList<>();
 
   /**
    * Gets the entities in the player's crosshairs.
@@ -58,5 +61,13 @@ public class Utils {
     }
 
     return entity.getCustomName();
+  }
+
+  public static void setDependency(String plugin) {
+    enabledDependencies.add(plugin);
+  }
+
+  public static ArrayList<String> getEnabledDependencies() {
+    return enabledDependencies;
   }
 }

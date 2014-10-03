@@ -41,12 +41,19 @@ public class CommandName implements TabExecutor {
     } else if (args.length > 1) {
       if (entity != null) {
         if (entity instanceof Player) {
-          CustomNames.setName((Player) entity, args[1]);
-          return true;
+          if (Utils.getEnabledDependencies().contains("TagAPI")) {
+            sender.sendMessage(
+                ChatColor.GREEN + (Utils.getEntityName(entity) + " has been renamed to " + args[1] + "."));
+            CustomNames.setName((Player) entity, args[1]);
+            return true;
+          } else {
+            sender.sendMessage(ChatColor.RED + "TagAPI not found. Cannot set player name.");
+            return false;
+          }
         }
 
-        entity.setCustomName(args[1]);
         sender.sendMessage(ChatColor.GREEN + Utils.getEntityName(entity) + " has been renamed to " + args[1] + ".");
+        entity.setCustomName(args[1]);
         return true;
       } else {
         sender.sendMessage(ChatColor.RED + "No entities found.");
