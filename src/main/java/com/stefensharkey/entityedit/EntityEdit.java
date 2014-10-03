@@ -20,6 +20,7 @@ package com.stefensharkey.entityedit;
 import com.stefensharkey.entityedit.command.CommandArmor;
 import com.stefensharkey.entityedit.command.CommandEntityEdit;
 import com.stefensharkey.entityedit.command.CommandHandler;
+import com.stefensharkey.entityedit.command.CommandHealth;
 import com.stefensharkey.entityedit.command.CommandName;
 import com.stefensharkey.entityedit.eventlistener.AsyncPlayerReceiveNameTagListener;
 import com.stefensharkey.entityedit.util.Utils;
@@ -48,6 +49,7 @@ public class EntityEdit extends JavaPlugin {
 
     handler.register("entityedit", new CommandEntityEdit());
     handler.register("armor", new CommandArmor());
+    handler.register("health", new CommandHealth());
     handler.register("name", new CommandName());
 
     getCommand("entityedit").setExecutor(handler);

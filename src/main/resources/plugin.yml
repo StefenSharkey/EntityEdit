@@ -11,6 +11,9 @@ commands:
   entityedit armor:
     description: Sets the armor of the entity.
     permission: entityedit.armor
+  entityedit health:
+    description: Sets the health of the entity.
+    permission: entityedit.health
   entityedit name:
     description: Sets the name of the entity.
     permission: entityedit.name
@@ -20,9 +23,13 @@ permissions:
     description: Gives access to all EntityEdit permissions.
     children:
       entityedit.armor: true
+      entityedit.health: true
       entityedit.name: true
   entityedit.armor:
     description: Sets the armor of the entity.
+    default: op
+  entityedit.health:
+    description: Sets the health of the entity.
     default: op
   entityedit.name:
     description: Sets the name of the entity.
