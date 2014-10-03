@@ -154,27 +154,27 @@ public class CommandArmor implements TabExecutor {
       add(Material.GOLD_BOOTS);
     }};
 
-    if (args[args.length-2].equalsIgnoreCase("-h")) {
+    if (args[args.length - 2].equalsIgnoreCase("-h")) {
       for (Material helm : helmTypes) {
-        if (helm.toString().toLowerCase().startsWith(args[args.length-1].toLowerCase())) {
+        if (helm.toString().toLowerCase().startsWith(args[args.length - 1].toLowerCase())) {
           equipmentTypes.add(helm.toString());
         }
       }
-    } else if (args[args.length-2].equalsIgnoreCase("-c")) {
+    } else if (args[args.length - 2].equalsIgnoreCase("-c")) {
       for (Material chestplate : chestplateTypes) {
-        if (chestplate.toString().toLowerCase().startsWith(args[args.length-1].toLowerCase())) {
+        if (chestplate.toString().toLowerCase().startsWith(args[args.length - 1].toLowerCase())) {
           equipmentTypes.add(chestplate.toString());
         }
       }
-    } else if (args[args.length-2].equalsIgnoreCase("-l")) {
+    } else if (args[args.length - 2].equalsIgnoreCase("-l")) {
       for (Material legging : leggingTypes) {
-        if (legging.toString().toLowerCase().startsWith(args[args.length-1].toLowerCase())) {
+        if (legging.toString().toLowerCase().startsWith(args[args.length - 1].toLowerCase())) {
           equipmentTypes.add(legging.toString());
         }
       }
-    } else if (args[args.length-2].equalsIgnoreCase("-b")) {
+    } else if (args[args.length - 2].equalsIgnoreCase("-b")) {
       for (Material boot : bootTypes) {
-        if (boot.toString().toLowerCase().startsWith(args[args.length-1].toLowerCase())) {
+        if (boot.toString().toLowerCase().startsWith(args[args.length - 1].toLowerCase())) {
           equipmentTypes.add(boot.toString());
         }
       }
