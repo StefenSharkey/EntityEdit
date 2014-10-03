@@ -18,6 +18,7 @@
 package com.stefensharkey.entityedit;
 
 import com.stefensharkey.entityedit.command.CommandArmor;
+import com.stefensharkey.entityedit.command.CommandEnchant;
 import com.stefensharkey.entityedit.command.CommandEntityEdit;
 import com.stefensharkey.entityedit.command.CommandHandler;
 import com.stefensharkey.entityedit.command.CommandHealth;
@@ -49,6 +50,7 @@ public class EntityEdit extends JavaPlugin {
 
     handler.register("entityedit", new CommandEntityEdit());
     handler.register("armor", new CommandArmor());
+    handler.register("enchant", new CommandEnchant());
     handler.register("health", new CommandHealth());
     handler.register("name", new CommandName());
 
