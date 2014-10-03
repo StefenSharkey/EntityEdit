@@ -91,11 +91,8 @@ public class CommandHandler implements TabExecutor {
           return commandList;
         }
       }
-    } else {
-      sender.sendMessage(ChatColor.RED + "You must be a player to use this command.");
-      return new ArrayList<>();
     }
 
-    return null;
+    return new ArrayList<>();
   }
 }
