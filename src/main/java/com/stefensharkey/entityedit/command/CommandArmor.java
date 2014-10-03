@@ -29,6 +29,7 @@ import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 
@@ -38,16 +39,14 @@ public class CommandArmor implements TabExecutor {
   public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
     Player player = (Player) sender;
     LivingEntity entity = Utils.getEntityInCrosshairs(player);
-    ArrayList<String> argsList = new ArrayList<>();
+    ArrayList<String> argsList;
 
     if (args.length == 1) {
       sender.sendMessage(ChatColor.RED + "Syntax error.");
       sender.sendMessage(
           ChatColor.RED + "/entityedit armor <[-clear] [-h [helm]] [-c [chestplate]] [-l [leggings]] [-b [boots]]>");
     } else {
-      for (String arg : args) {
-        argsList.add(arg.toUpperCase());
-      }
+      argsList = new ArrayList<>(Arrays.asList(args));
 
       if (entity != null) {
         if (argsList.contains("-clear")) {
@@ -156,25 +155,25 @@ public class CommandArmor implements TabExecutor {
 
     if (args[args.length - 2].equalsIgnoreCase("-h")) {
       for (Material helm : helmTypes) {
-        if (helm.toString().toLowerCase().startsWith(args[args.length - 1].toLowerCase())) {
+        if (helm.toString().startsWith(args[args.length - 1].toUpperCase())) {
           equipmentTypes.add(helm.toString());
         }
       }
     } else if (args[args.length - 2].equalsIgnoreCase("-c")) {
       for (Material chestplate : chestplateTypes) {
-        if (chestplate.toString().toLowerCase().startsWith(args[args.length - 1].toLowerCase())) {
+        if (chestplate.toString().startsWith(args[args.length - 1].toUpperCase())) {
           equipmentTypes.add(chestplate.toString());
         }
       }
     } else if (args[args.length - 2].equalsIgnoreCase("-l")) {
       for (Material legging : leggingTypes) {
-        if (legging.toString().toLowerCase().startsWith(args[args.length - 1].toLowerCase())) {
+        if (legging.toString().startsWith(args[args.length - 1].toUpperCase())) {
           equipmentTypes.add(legging.toString());
         }
       }
     } else if (args[args.length - 2].equalsIgnoreCase("-b")) {
       for (Material boot : bootTypes) {
-        if (boot.toString().toLowerCase().startsWith(args[args.length - 1].toLowerCase())) {
+        if (boot.toString().startsWith(args[args.length - 1].toUpperCase())) {
           equipmentTypes.add(boot.toString());
         }
       }
