@@ -79,7 +79,6 @@
             <id>bukkit-repo</id>
             <url>http://maven.sk89q.com/repo</url>
         </repository>
-
         <repository>
             <id>kitteh-repo</id>
             <url>http://repo.kitteh.org/content/repositories/public/</url>
@@ -95,7 +94,6 @@
             <type>jar</type>
             <scope>provided</scope>
         </dependency>
-
         <dependency>
             <groupId>org.kitteh</groupId>
             <artifactId>tagapi</artifactId>

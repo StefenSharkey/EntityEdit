@@ -28,7 +28,7 @@ import org.kitteh.tag.TagAPI;
 
 public class AsyncPlayerReceiveNameTagListener implements Listener {
 
-  private EntityEdit plugin;
+  private final EntityEdit plugin;
 
   public AsyncPlayerReceiveNameTagListener(EntityEdit plugin) {
     this.plugin = plugin;

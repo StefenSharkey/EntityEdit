@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class CommandHandler implements TabExecutor {
 
-  private Map<String, TabExecutor> commands = new HashMap<>();
+  private final Map<String, TabExecutor> commands = new HashMap<>();
 
   public void register(String name, TabExecutor cmd) {
     commands.put(name, cmd);

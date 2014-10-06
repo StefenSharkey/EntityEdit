@@ -27,7 +27,7 @@ import java.util.List;
 
 public class Utils {
 
-  private static ArrayList<String> enabledDependencies = new ArrayList<>();
+  private final static ArrayList<String> enabledDependencies = new ArrayList<>();
 
   /**
    * Gets the entities in the player's crosshairs.
@@ -37,7 +37,8 @@ public class Utils {
    */
   public static LivingEntity getEntityInCrosshairs(Player player) {
     int range = 10;
-    Block[] blocks = player.getLineOfSight(null, range).toArray(new Block[0]);
+    List<Block> lineOfSight = player.getLineOfSight(null, range);
+    Block[] blocks = lineOfSight.toArray(new Block[lineOfSight.size()]);
     List<Entity> near = player.getNearbyEntities(range, range, range);
 
     for (Block block : blocks) {
