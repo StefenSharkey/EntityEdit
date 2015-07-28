@@ -11,6 +11,12 @@ commands:
   entityedit armor:
     description: Sets the armor of the entity.
     permission: entityedit.armor
+  entityedit copy:
+    description: Copies the entity into the clipboard.
+    permission: entityedit.copy
+  entityedit cut:
+    description: Cuts (copies and removes) the entity.
+    permission: entityedit.cut
   entityedit enchant:
     description: Adds an enchantment on a piece of armor on the entity.
     permission: entityedit.enchant
@@ -20,16 +26,28 @@ commands:
   entityedit name:
     description: Sets the name of the entity.
     permission: entityedit.name
+  entityedit paste:
+    description: Pastes the entity from the clipboard.
+    permission: entityedit.paste
 
 permissions:
   entityedit.*:
     description: Gives access to all EntityEdit permissions.
     children:
       entityedit.armor: true
+      entityedit.copy: true
+      entityedit.cut: true
       entityedit.health: true
       entityedit.name: true
+      entityedit.paste: true
   entityedit.armor:
     description: Sets the armor of the entity.
+    default: op
+  entityedit.copy:
+    description: Copies the entity into the clipboard.
+    default: op
+  entityedit.cut:
+    description: Cuts (copies and removes) the entity.
     default: op
   entityedit.enchant:
     description: Adds an enchantment on a piece of armor on the entity.
@@ -39,4 +57,7 @@ permissions:
     default: op
   entityedit.name:
     description: Sets the name of the entity.
+    default: op
+  entityedit paste:
+    description: Pastes the entity from the clipboard.
     default: op
