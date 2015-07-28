@@ -18,7 +18,6 @@
 package com.stefensharkey.entityedit;
 
 import com.stefensharkey.entityedit.command.*;
-import com.stefensharkey.entityedit.util.Utils;
 
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -27,10 +26,6 @@ public class EntityEdit extends JavaPlugin {
   @Override
   public void onEnable() {
     registerCommands();
-
-    if (getServer().getPluginManager().getPlugin("TagAPI") != null) {
-      Utils.setDependency("TagAPI");
-    }
   }
 
   @Override
