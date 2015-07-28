@@ -17,17 +17,21 @@
 
 package com.stefensharkey.entityedit.util;
 
+import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.LivingEntity;
 import org.bukkit.entity.Player;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Utils {
 
   private final static ArrayList<String> enabledDependencies = new ArrayList<>();
+  private final static Set<Material> materials = new HashSet<>();
 
   /**
    * Gets the entities in the player's crosshairs.
@@ -37,7 +41,8 @@ public class Utils {
    */
   public static LivingEntity getEntityInCrosshairs(Player player) {
     int range = 10;
-    List<Block> lineOfSight = player.getLineOfSight(null, range);
+    materials.add(Material.AIR);
+    List<Block> lineOfSight = player.getLineOfSight(materials, range);
     Block[] blocks = lineOfSight.toArray(new Block[lineOfSight.size()]);
     List<Entity> near = player.getNearbyEntities(range, range, range);
 
