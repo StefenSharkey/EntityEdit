@@ -37,6 +37,7 @@ permissions:
       entityedit.armor: true
       entityedit.copy: true
       entityedit.cut: true
+      entityedit.enchant: true
       entityedit.health: true
       entityedit.name: true
       entityedit.paste: true
