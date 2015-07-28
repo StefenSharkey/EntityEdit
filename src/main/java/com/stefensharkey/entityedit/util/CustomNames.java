@@ -18,7 +18,6 @@
 package com.stefensharkey.entityedit.util;
 
 import org.bukkit.entity.Player;
-import org.kitteh.tag.TagAPI;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -41,7 +40,6 @@ public class CustomNames {
     }
 
     names.put(player, name);
-    TagAPI.refreshPlayer(player);
   }
 
   public static Map<Player, String> getNames() {

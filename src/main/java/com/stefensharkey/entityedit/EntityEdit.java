@@ -23,7 +23,6 @@ import com.stefensharkey.entityedit.command.CommandEntityEdit;
 import com.stefensharkey.entityedit.command.CommandHandler;
 import com.stefensharkey.entityedit.command.CommandHealth;
 import com.stefensharkey.entityedit.command.CommandName;
-import com.stefensharkey.entityedit.eventlistener.AsyncPlayerReceiveNameTagListener;
 import com.stefensharkey.entityedit.util.Utils;
 
 import org.bukkit.plugin.java.JavaPlugin;
@@ -33,7 +32,6 @@ public class EntityEdit extends JavaPlugin {
   @Override
   public void onEnable() {
     registerCommands();
-    registerEvents();
 
     if (getServer().getPluginManager().getPlugin("TagAPI") != null) {
       Utils.setDependency("TagAPI");
@@ -52,12 +50,8 @@ public class EntityEdit extends JavaPlugin {
     handler.register("armor", new CommandArmor());
     handler.register("enchant", new CommandEnchant());
     handler.register("health", new CommandHealth());
-    handler.register("name", new CommandName());
+//    handler.register("name", new CommandName());
 
     getCommand("entityedit").setExecutor(handler);
-  }
-
-  public void registerEvents() {
-    getServer().getPluginManager().registerEvents(new AsyncPlayerReceiveNameTagListener(this), this);
   }
 }
